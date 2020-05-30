@@ -40,7 +40,7 @@ map.on("click",handleMapClick);
 function handleMapClick(evt)
 {
  var coord=ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
-	document.getElementById("Latitude").value=coord[1];
+  document.getElementById("Latitude").value=coord[1];
  document.getElementById("Longitude").value=coord[0];
 }
 function fnHandler(e)
