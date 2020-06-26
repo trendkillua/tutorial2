@@ -2,9 +2,8 @@ const express = require("express");
 const pg=require("pg").Pool;
 const bodyParser = require('body-parser'); 
 const app = express();
-const pool=new pg({host:'ec2-54-175-117-212.compute-1.amazonaws.com
-',database:'hw_db',user:'iltqchzbqbjneo',password:
-'93b577b735d3cd0bbf80bce1710f68a3dadf2079e2d164edb54fb2168b1cb59d',port:'5432',ssl:false});app.use(bodyParser.urlencoded({extended: true}));
+const pool=new pg({host:'ec2-54-175-117-212.compute-1.amazonaws.com',database:'ddufarbt9l6i7g',user:'iltqchzbqbjneo',password:'93b577b735d3cd0bbf80bce1710f68a3dadf2079e2d164edb54fb2168b1cb59d',port:'5432',ssl:{rejectUnauthorized:false}});
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json()); 
 const _port = process.env.PORT || 5000;
 const _app_folder = __dirname + '/dist' ;
