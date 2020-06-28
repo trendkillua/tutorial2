@@ -15,25 +15,78 @@ var map = new ol.Map({
     layers: [layer]
 });
 
+var styles = [];
+styles['default'] = new ol.style.Style({
+  image: new ol.style.Icon({
+    anchor: [1, 1],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          scale: 1.0,
+    src: '/images/surprise.png'
+  })
+});
+
+styles['birch'] = new ol.style.Style({
+  image: new ol.style.Icon({
+          anchor: [1, 1],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          scale: 1.0,
+    src: '/images/birch.png'
+  })
+});
+
+styles['spruce'] = new ol.style.Style({
+  image: new ol.style.Icon({
+          anchor: [1, 1],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          scale: 1.0,
+    src: '/images/spruce.png'
+  })
+});
+
+styles['oak'] = new ol.style.Style({
+  image: new ol.style.Icon({
+      anchor: [1, 1],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          scale: 1.0,
+    src: '/images/oak.png'
+  })
+});
+styles['palm'] = new ol.style.Style({
+  image: new ol.style.Icon({
+    anchor: [1, 1],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          scale: 1.0,
+    src: '/images/palm.png'
+  })
+});
+
 var vectorSource = new ol.source.Vector({
         url:"/api/data",
         format: new ol.format.GeoJSON({ featureProjection: "EPSG:4326" })  
 });
 
-var stroke = new ol.style.Stroke({color: 'black', width: 2});
-var fill = new ol.style.Fill({color: 'red'});
+
 
 var markerVectorLayer = new ol.layer.Vector({
     source: vectorSource,
-    style: new ol.style.Style({
-        image: new ol.style.RegularShape({
-          fill: fill,
-          stroke: stroke,
-          points: 4,
-          radius: 10,
-          angle: Math.PI / 4
-        })
-      })
+    style: function(feature, resolution){
+            var type = feature.getProperties().tree_type;
+
+            if(type == 'Birch'){
+              return styles['birch'];
+            }else if(type == 'Oak'){
+              return styles['oak'];
+              }else if(type == 'Palm'){
+              return styles['palm'];
+            }else{
+              return styles['spruce'];
+            }
+        }
 
 });
 
