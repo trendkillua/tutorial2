@@ -110,6 +110,7 @@ function fnHandler(e)
         console.log(feature.getProperties().tree_type);
     
     document.getElementById("tree_type").value=feature.getProperties().tree_type;
+    document.getElementById("tree_height").value=feature.getProperties().tree_height;
     });
     if (e.selected[0])
     {
@@ -129,7 +130,8 @@ function submit()
 
         Latitude: document.getElementById('Latitude').value,
         Longitude: document.getElementById('Longitude').value,
-        tree_type: document.getElementById('tree_type').value
+        tree_type: document.getElementById('tree_type').value,
+        tree_height: document.getElementById('tree_height').value,
     });
     xhr.send(data);
     location.reload();
